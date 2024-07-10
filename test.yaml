@@ -1,0 +1,9 @@
+---
+- name: Knowing server properties
+  hosts: all
+  become: yes
+  gather_facts: yes
+  tasks:
+    - name: Get server properties
+      debug:
+        msg: "This is my server {{ ansible_distribution }} and {{ ansible_os_family }}"

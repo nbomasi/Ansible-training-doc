@@ -1,0 +1,20 @@
+---
+- name: dbserver-setup
+  become: yes
+  hosts: dbservers
+  tasks:
+  - name: install dbservers
+    yum: 
+      name: 
+      - mariadb-server
+      - python3-PyMySQL
+      state: present
+  - name: start dbservers
+    service:
+     name: mariadb
+     state: started
+  - name: Create a new database with name 'bobdata'
+    mysql_db:
+      name: bobdata
+      state: present
+      login_unix_socket: /var/lib/mysql/mysql.sock

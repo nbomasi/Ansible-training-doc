@@ -1,0 +1,35 @@
+---
+- name: webserver-setup
+  become: yes
+  hosts: webservers
+  tasksS:
+  - name: install webservers
+    yum:
+     name: httpd
+     state: present
+  - name: start webservers
+    service:
+     name: httpd
+     state: started
+  - name: Copy a new  file into place, backing up the original if it differs from the copied version
+    copy:
+      src: index.html
+      dest: /var/www/html/index.html
+      backup: yes
+
+- name: dbserver-setup
+  become: yes
+  hosts: dbservers
+  tasks:
+  - name: install dbservers
+    yum: 
+     name: mariadb-server
+     state: present 
+  - name: start dbservers
+    service:
+     name: mariadb
+     state: started
+  - name: Create a new database with name 'bobdata'
+    mysql_db:
+      name: bobdata
+      state: present

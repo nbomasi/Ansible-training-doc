@@ -1,0 +1,5 @@
+- name: Copy a new "ntp.conf file into place, backing up the original if it differs from the copied version
+  copy:
+    src: index.html
+    dest: /var/www/html/index.html
+    backup: yes

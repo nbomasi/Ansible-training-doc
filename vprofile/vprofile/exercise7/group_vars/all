@@ -1,0 +1,6 @@
+# Variables accessible by ALL the Hosts from the Inventory file
+dbuser: testadmin
+dbpass: admin123
+dbname: redhat
+login_unix_socket: /var/lib/mysql/mysql.sock
+
